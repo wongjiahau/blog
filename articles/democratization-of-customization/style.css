@@ -50,3 +50,36 @@ blockquote {
 }
 figure.portrait img { max-width: 24rem; display: block; margin: 0 auto; }
 figure.portrait figcaption { text-align: center; }
+.callout {
+  margin: 1.75rem 0;
+  padding: 0.9rem 1.15rem;
+  background: var(--card);
+  border-left: 4px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  font: 1rem/1.55 system-ui, sans-serif;
+}
+.callout .label {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.callout p { margin: 0; }
+.compare { margin: 2rem 0; }
+.compare h4 { font: 700 1rem system-ui, sans-serif; margin: 0 0 0.5rem; }
+.compare .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+.compare .shot { position: relative; }
+.compare .mono { font-weight: 400; color: var(--muted); }
+.compare p.desc { font: 0.9rem/1.5 system-ui, sans-serif; margin: 0.5rem 0 0; }
+.compare img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; display: block; }
+.compare .tag {
+  position: absolute; left: 0.5rem; top: 0.5rem;
+  padding: 0.1rem 0.5rem; border-radius: 4px;
+  background: rgba(0,0,0,0.65); color: #fff;
+  font: 700 0.7rem system-ui, sans-serif; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.compare .tag.after { background: var(--accent); }
+.compare p.credit { font: 0.75rem/1.4 system-ui, sans-serif; color: var(--muted); margin: 0.25rem 0 0; }
