@@ -1,6 +1,7 @@
 ---
 layout: null
-title: "The Cost of Fit: What Steam Engines, Shops, and SaaS Have in Common"
+title: "The Democratization of Customization"
+subtitle: "What steam engines, shops, and SaaS have in common"
 date: 2026-10-06
 ---
 <!doctype html>
@@ -17,6 +18,7 @@ date: 2026-10-06
 
   <article>
     <h1>{{ page.title | escape }}</h1>
+    <p class="subtitle">{{ page.subtitle | escape }}</p>
     <p class="meta">{{ page.date | date: "%B %-d, %Y" }} &middot; {{ site.author }}</p>
 
     <p>Picture a landscape of everything people need. Some needs are mountains: heavy, demanding, specialized. Others are grooves: light, occasional, small. Now lay a flat plane over the whole landscape and say, "this is what you get."</p>
@@ -36,6 +38,11 @@ date: 2026-10-06
 
     <p>In each case, one form of distribution was the <strong>sole distributor</strong> of something. It came with fixed constraints that nobody could tune. A new technology turned those constraints into parameters.</p>
 
+    <figure class="portrait">
+      <img src="printing-press.jpg" alt="A wooden hand press with stacks of printed sheets, in a printing museum">
+      <figcaption>A wooden hand press, the kind of machine that made text a single, scarce-to-copy product. Photo: Koreller, <a href="https://commons.wikimedia.org/wiki/File:Mus%C3%A9e_de_l%27imprimerie_de_Nantes_-_075_-_Presse_%C3%A0_bras_en_bois,_command%C3%A9_par_Gutenberg.jpg">Wikimedia Commons</a>, CC BY-SA 4.0.</figcaption>
+    </figure>
+
     <div class="table-wrap">
       <table>
         <thead>
@@ -53,6 +60,11 @@ date: 2026-10-06
     </div>
 
     <p>The factory is the clearest case. A single steam engine turned a line shaft, and belts carried its power to every machine. Everything ran at the engine's pace, and machines were placed by where the shaft ran, not by how the work flowed. A heavy press was starved while a light lathe was oversupplied. The electric motor let each machine get its own motor, sized to its job.</p>
+
+    <figure>
+      <img src="line-shaft.jpg" alt="A machine shop with a lathe, and a line shaft and belts overhead">
+      <figcaption>A c.1920 machine shop in Nebraska: one overhead line shaft, and belts carrying its power down to each machine. Photo: Historic American Engineering Record, Library of Congress, public domain (<a href="https://commons.wikimedia.org/wiki/File:NORTH_TO_CIRCA_1920_CINCINNATI_AMES_MFG._CO._TURRET_LATHE_WITH_PARTS-TOOL_BINS_ALONG_THE_EAST_INTERIOR_WALL_OF_THE_BUILDING._NEAR_THE_CEILING_IS_THE_LINE_SHAFT_WITH_BELTS_AND_HAER_NEB,66-NEBCI,6-24.tif">source</a>).</figcaption>
+    </figure>
 
     <figure>
       <img src="fitted-supply.png" alt="After: supply follows the contour of demand">

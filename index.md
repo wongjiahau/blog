@@ -9,6 +9,7 @@ layout: default
     <li>
       <span class="post-meta">{{ article.date | date: "%b %-d, %Y" }}</span>
       <h3><a class="post-link" href="{{ article.url | relative_url }}">{{ article.title | escape }}</a></h3>
+      {%- if article.subtitle %}<p>{{ article.subtitle | escape }}</p>{% endif %}
     </li>
     {%- endfor -%}
   </ul>
