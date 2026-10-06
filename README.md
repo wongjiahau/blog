@@ -1,13 +1,13 @@
 # My Blog
 
-A Jekyll blog hosted on GitHub Pages.
+A static blog hosted on GitHub Pages, built with Bun (`build.ts`).
 
 ## Publish
 
 1. Create an empty repo on GitHub (no README, no .gitignore).
 2. Push this folder to it on the `main` branch.
 3. In the repo: Settings > Pages > Source: **GitHub Actions**.
-4. Every push to `main` runs `.github/workflows/pages.yml`, which builds with Jekyll and deploys.
+4. Every push to `main` runs `.github/workflows/pages.yml`, which builds with Bun (`bun build.ts`) and deploys.
 5. Your site appears at `https://<username>.github.io/<repo>/` after a minute or two.
 
 ## Write an article
@@ -41,6 +41,7 @@ Reference assets relatively: `<img src="diagram.png">`. The article is served at
 ## Preview locally (optional)
 
 ```
-bundle install
-bundle exec jekyll serve
+bun dev.ts
 ```
+
+Then open http://localhost:4000/. The site is built with `bun build.ts` (output in `_site/`).

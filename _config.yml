@@ -1,10 +1,6 @@
 title: My Blog
 description: Notes on technology, economics, and how things fit together.
 author: Jia Hau
-theme: minima
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
 # For a project site (user.github.io/repo-name), set baseurl to "/repo-name".
 # For a user site (repo named <username>.github.io), leave both empty.
 baseurl: ""
