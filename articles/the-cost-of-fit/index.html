@@ -1,0 +1,160 @@
+---
+layout: null
+title: "The Cost of Fit: What Steam Engines, Shops, and SaaS Have in Common"
+date: 2026-10-06
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title | escape }}</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <nav><a href="{{ '/' | relative_url }}">&larr; {{ site.title }}</a></nav>
+
+  <article>
+    <h1>{{ page.title | escape }}</h1>
+    <p class="meta">{{ page.date | date: "%B %-d, %Y" }} &middot; {{ site.author }}</p>
+
+    <p>Picture a landscape of everything people need. Some needs are mountains: heavy, demanding, specialized. Others are grooves: light, occasional, small. Now lay a flat plane over the whole landscape and say, "this is what you get."</p>
+
+    <figure>
+      <img src="flat-plane.png" alt="The monolith: one flat plane over varied demand">
+      <figcaption>The monolith: one flat plane over varied demand.</figcaption>
+    </figure>
+
+    <p>Wherever the terrain rises above the plane, the work is <strong>under-served</strong>. Wherever it dips below, the capacity is <strong>wasted</strong>. The plane is only ever <em>just right</em> at the few points where it happens to touch the ground.</p>
+
+    <p>That plane is what I call a <strong>monolith</strong>: a single source that distributes some kind of power to everyone at one fixed level. This article argues that the same story keeps repeating. A monolith dominates, people live with the mismatch, and then a new technology makes it cheap to follow the terrain instead. I'll call the thing that falls <strong>the cost of fit</strong>.</p>
+
+    <hr>
+
+    <h2>The pattern, in six rows</h2>
+
+    <p>In each case, one form of distribution was the <strong>sole distributor</strong> of something. It came with fixed constraints that nobody could tune. A new technology turned those constraints into parameters.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Technology</th><th>Before</th><th>Monolith</th><th>After</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Printing press</strong></td><td>Scribes and scriptoria are the sole distributor of text, so a few texts exist in a few places, in one scholarly language.</td><td>Production of text</td><td>Text is fitted to the reader: vernacular languages, niche subjects, cheap pamphlets for small audiences.</td></tr>
+          <tr><td><strong>Steam engine</strong></td><td>Muscle and the water wheel are the sole distributor of power, fixed to a river's location and current.</td><td>Source of power</td><td>Power is fitted to the work: an engine can sit wherever the work is, sized to the job.</td></tr>
+          <tr><td><strong>Electric motor</strong></td><td>The steam engine is the sole distributor of power, with one pace and machines placed by where the shaft runs.</td><td>Delivery of power to the machines</td><td>Power is customized per machine: its size, speed, placement, and on/off.</td></tr>
+          <tr><td><strong>Computer</strong></td><td>Fixed-function machines and pools of human clerks are the sole distributor of computation, so each device does one kind of calculation.</td><td>Capability of computation</td><td>Software fits computation to each task, so one machine does any job.</td></tr>
+          <tr><td><strong>Internet</strong></td><td>Broadcast and print are the sole distributor of information and attention, giving everyone the same program, paper, or channel.</td><td>Distribution of information and attention</td><td>Information is fitted to each person: search, feeds, niche communities, individual publishing.</td></tr>
+          <tr><td><strong>E-commerce</strong></td><td>The brick-and-mortar shop is the sole distributor of marketing power, limited by audience, geography, and popularity.</td><td>Reach to customers</td><td>Marketing is customized per customer: audience, region, and message.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>The factory is the clearest case. A single steam engine turned a line shaft, and belts carried its power to every machine. Everything ran at the engine's pace, and machines were placed by where the shaft ran, not by how the work flowed. A heavy press was starved while a light lathe was oversupplied. The electric motor let each machine get its own motor, sized to its job.</p>
+
+    <figure>
+      <img src="fitted-supply.png" alt="After: supply follows the contour of demand">
+      <figcaption>After: supply follows the contour of demand.</figcaption>
+    </figure>
+
+    <p>Same terrain, but now supply follows it.</p>
+
+    <hr>
+
+    <h2>The monolith was never a limit</h2>
+
+    <p>It is tempting to read the "sole distributor" as a technical ceiling: nobody <em>could</em> do otherwise. That isn't quite right.</p>
+
+    <p>A rich investor could always have run several small engines in one factory compound, one per machine. He could have located his shop anywhere, or built his own commercial area. Custom software was always available to whoever could pay engineers. Fit existed. It was just expensive.</p>
+
+    <p>So the monolith is better understood as <strong>the cheapest form that the typical buyer could afford</strong>. Large engines were more efficient per unit of power, so one big engine was the cheapest way to run a factory. A shop on a busy street was the cheapest way to reach customers. The flat plane was what most people settled for, and "sole distributor" meant sole for everyone who couldn't afford to escape it.</p>
+
+    <p>This changes what each new technology does. It doesn't create the possibility of fit. It <strong>collapses the cost of fit</strong> until customization is cheaper than the waste of the flat plane. At that point, ordinary buyers switch.</p>
+
+    <p>A side effect: this explains why the switch isn't instant. Early adopters of the electric motor often just replaced the steam engine with one big motor and kept the shafts and belts. Economist Paul David documented this in his well-known 1990 paper on the dynamo and the computer. The payoff came when fit became cheaper than the waste, not on the day the technology arrived.</p>
+
+    <hr>
+
+    <h2>Now it's software's turn</h2>
+
+    <p>SaaS is a textbook monolith. One codebase is built for the average customer in a market and sold to thousands of them. Its feature set is fixed by the vendor's roadmap:</p>
+
+    <ul>
+      <li><strong>Over-capacity:</strong> customers pay for seats and modules they barely use.</li>
+      <li><strong>Under-capacity:</strong> they patch the gaps with spreadsheets, workarounds, and feature requests that sit in a backlog.</li>
+      <li><strong>"Customization" within the plane:</strong> settings and configuration let you move around inside the vendor's schema, much like a factory choosing where along the shaft to place a machine.</li>
+    </ul>
+
+    <p>SaaS won because it traded fit for price. Building was expensive enough that sharing one product across thousands of customers was the cheapest option. The long tail of individual needs went unserved because no one could justify building for it.</p>
+
+    <p>AI collapses the cost of building. When it does, the reason to accept the flat plane weakens, and the unit of software can shrink from <em>the product for a market</em> to <em>the program for one person's task or one company's workflow</em>. Commentators have noticed the market effect: software stocks reportedly lost about $285 billion in a single day in February 2026 as investors began pricing in what AI does to software.</p>
+
+    <h3>The irony: the software house returns</h3>
+
+    <p>There was a time when custom software was the default. Software houses built systems shaped around a client's workflow. SaaS was supposed to kill them, and for most buyers it did, because the cost of fit was too high.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Era</th><th>Fitted to you?</th><th>Affordable?</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Software house</td><td>Yes, built for you</td><td>No, only for those who could pay for engineers</td></tr>
+          <tr><td>SaaS</td><td>No, the flat plane</td><td>Yes, cost shared across thousands of customers</td></tr>
+          <tr><td>AI-assisted building</td><td>Yes</td><td>Yes, as the cost of building collapses</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>If AI removes the trade-off, the demand that software houses once served comes back. The returning software house probably won't look like the old one. Its labor was writing code, which is now the cheap part. What stays scarce is understanding the client's domain, deciding what to build, and being accountable when it breaks. Expect something closer to a consultancy that builds: small teams, fast turnaround.</p>
+
+    <hr>
+
+    <h2>Caveats worth taking seriously</h2>
+
+    <p><strong>Dusk is a claim, not a certainty.</strong> In the other rows, the old monolith lingered long after the new tool arrived, and parts of it never disappeared. SaaS may shrink to the cases where one shared product really is the right fit: network effects, compliance, shared data, or commodity needs. A plausible end state is a portfolio, with commodity needs on shared products and strategic workflows built custom, and with surviving SaaS companies acting as platforms that hold data and integrations underneath.</p>
+
+    <p><strong>Fit has its own costs.</strong> Custom software must be maintained, secured, and understood by someone. Cheap to build is not the same as cheap to own, and the true cost of fit includes everything after the first version.</p>
+
+    <p><strong>The printing press is the weakest row.</strong> It is famous for <em>standardizing</em> text, not customizing it. The row holds only if you count the long-run effect on what gets printed and for whom.</p>
+
+    <p><strong>It isn't only about general-purpose technologies.</strong> Streaming, desktop publishing, 3D printing, and print-on-demand all turn fixed constraints into parameters, though at narrower scale. Some of the technologies in the table also <em>created</em> flat planes in an earlier era: the steam engine is the monolith of the electric-motor row, and mass production made the uniform product cheap. So the full pattern may be a cycle:</p>
+
+    <ol>
+      <li>Custom work, affordable only to the rich.</li>
+      <li>A technology makes the standard version cheap, and the flat plane dominates.</li>
+      <li>A later technology makes fit cheap again, and the plane breaks.</li>
+    </ol>
+
+    <p>The table shows only step three. The claim it supports is not "general-purpose technologies break monoliths" but "whatever breaks a monolith lowers the cost of fit."</p>
+
+    <hr>
+
+    <h2>Related ideas</h2>
+
+    <p>This isn't built in a vacuum. Several people have approached pieces of it, and anyone citing them should check the details:</p>
+
+    <ul>
+      <li><strong>Paul David (1990)</strong> on the dynamo and the computer covers the steam-to-electric case, with a focus on adoption lag.</li>
+      <li><strong>Eric von Hippel's work on user innovation</strong> argues that manufacturers design for the average need because custom design is costly.</li>
+      <li><strong>Clay Shirky's "Situated Software" (2004)</strong> and <strong>Robin Sloan's "home-cooked app"</strong> anticipate software built for a handful of users.</li>
+      <li><strong>Mass customization</strong> (Pine) and the <strong>long tail</strong> (Anderson) cover parts of the e-commerce and internet rows.</li>
+      <li><strong>Wardley mapping</strong> describes the opposite drift, from custom-built to product to commodity, which is the step-two half of the cycle above.</li>
+      <li>Many recent commentaries make the specific case that AI is ending one-size-fits-all SaaS.</li>
+    </ul>
+
+    <p>What I haven't found stated in one place is the unifying claim: across technologies, the monolith is the cheapest form for the typical buyer, the flat plane is the cost of that choice, and each new technology works by lowering the cost of fit.</p>
+
+    <hr>
+
+    <h2>The short version</h2>
+
+    <blockquote>
+      Every monolith is a flat plane laid over a varied landscape. It is never just right, only cheaper than the alternative. Each new technology lowers the cost of fit until the alternative wins.
+    </blockquote>
+  </article>
+</main>
+</body>
+</html>
