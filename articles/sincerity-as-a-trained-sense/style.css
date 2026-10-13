@@ -84,7 +84,9 @@ html[data-lang="zh"] #article-zh { display: block; }
 #article-zh .quote p.tr { font-size: 1.5rem; }
 #article-zh .quote p[lang]:not(.tr) { font-size: 1.2rem; }
 #article-zh blockquote { font-size: 1.6rem; }
-#article-zh .subtitle { font-size: 1.7rem; }
+#article-zh h1 { font-size: 3.2rem; }
+#article-zh h2 { font-size: 2.15rem; }
+#article-zh h3 { font-size: 1.65rem; }
 #article-zh figcaption, #article-zh .quote p.cite, #article-zh figure.pair p, #article-zh .meta { font-size: 1.05rem; }
 #article-zh figcaption .credit, #article-zh figure.pair p.credit { font-size: 0.9rem; }
 #article-zh .name { text-decoration: underline; text-underline-offset: 0.2em; }
