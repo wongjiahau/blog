@@ -50,6 +50,7 @@ blockquote {
 }
 figure.portrait img { max-width: 24rem; display: block; margin: 0 auto; }
 figure.portrait figcaption { text-align: center; }
+figcaption .credit { font-size: 0.75rem; }
 .callout {
   margin: 1.75rem 0;
   padding: 0.9rem 1.15rem;
