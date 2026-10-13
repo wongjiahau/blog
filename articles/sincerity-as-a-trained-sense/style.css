@@ -65,3 +65,26 @@ figcaption .credit { font-size: 0.75rem; }
 ul.sources li { margin-bottom: 0.6rem; }
 .quote .unit { margin: 0.85rem 0; }
 .quote .unit p { margin: 0; }
+nav { display: flex; justify-content: space-between; align-items: center; }
+#lang-toggle {
+  font: 0.9rem system-ui, sans-serif;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 0.2rem 0.9rem;
+  cursor: pointer;
+}
+#lang-toggle:hover { background: var(--accent); color: var(--bg); }
+#article-zh { display: none; }
+html[data-lang="zh"] #article-en { display: none; }
+html[data-lang="zh"] #article-zh { display: block; }
+#article-zh { font-family: Georgia, "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", serif; line-height: 1.85; }
+#article-zh { font-size: 1.5rem; }
+#article-zh .quote p.tr { font-size: 1.5rem; }
+#article-zh .quote p[lang]:not(.tr) { font-size: 1.2rem; }
+#article-zh blockquote { font-size: 1.6rem; }
+#article-zh .subtitle { font-size: 1.7rem; }
+#article-zh figcaption, #article-zh .quote p.cite, #article-zh figure.pair p, #article-zh .meta { font-size: 1.05rem; }
+#article-zh figcaption .credit, #article-zh figure.pair p.credit { font-size: 0.9rem; }
+#article-zh .name { text-decoration: underline; text-underline-offset: 0.2em; }

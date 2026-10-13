@@ -11,12 +11,39 @@ date: 2026-10-12
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ page.title | escape }}</title>
   <link rel="stylesheet" href="style.css">
+  <script>
+    // Language lives in the URL hash (#lang=zh) so it can be shared and survives reloads.
+    var zhTitle = "非交易性的真誠";
+    function readLang() {
+      return /(^|[#&])lang=zh(&|$)/.test(location.hash) ? "zh" : "en";
+    }
+    function applyLang() {
+      var lang = readLang();
+      document.documentElement.setAttribute("data-lang", lang);
+      document.documentElement.lang = lang === "zh" ? "zh-Hant" : "en";
+      if (!window.enTitle) window.enTitle = document.title;
+      document.title = lang === "zh" ? zhTitle : window.enTitle;
+      var btn = document.getElementById("lang-toggle");
+      if (btn) btn.textContent = lang === "zh" ? "English" : "中文";
+    }
+    applyLang();
+    window.addEventListener("hashchange", applyLang);
+    document.addEventListener("DOMContentLoaded", function () {
+      applyLang();
+      document.getElementById("lang-toggle").addEventListener("click", function () {
+        location.hash = readLang() === "zh" ? "lang=en" : "lang=zh";
+      });
+    });
+  </script>
 </head>
 <body>
 <main>
-  <nav><a href="{{ '/' | relative_url }}">&larr; {{ site.title }}</a></nav>
+  <nav>
+    <a href="{{ '/' | relative_url }}">&larr; {{ site.title }}</a>
+    <button id="lang-toggle" type="button" aria-label="Switch language / 切换语言">中文</button>
+  </nav>
 
-  <article>
+  <article lang="en" id="article-en">
     <h1>{{ page.title | escape }}</h1>
     <p class="subtitle">{{ page.subtitle | escape }}</p>
     <p class="meta">{{ page.date | date: "%B %-d, %Y" }} &middot; {{ site.author }}</p>
@@ -396,7 +423,7 @@ date: 2026-10-12
 
     <p>Because I work with software, there is a way to say this that makes sense to me. The labels are the output of a model whose weights I never chose. If I take a materialistic view here, these weights are but neurological pathways that were inherited from my biological parents and shaped by my past experiences. My objective, to treat people with sincerity, comes from the weights too. It was instilled by years of learning and reading the sages' words and contemplating them deeply; I was not born knowing it (生而知之). Once instilled, it can be held fixed as the target that the other weights are adjusted against. This article is meant as the same kind of input, in the hope of kick-starting the same spark in you. Turning the question back on myself is like backpropagation: instead of blaming the data, I propagate the error back through my own weights and adjust them. Treating people transactionally is like optimizing a proxy, gratitude or reputation, instead of the thing the proxy stands for.</p>
 
-    <p>What I found, eventually, is that the blocker was my own mind. I'm sure the event left a dent in both our brains (the amygdala tagging it as a threat, the hippocampus filing its context), but my own mental blocker was the one I could resolve. After the accusation, things got worse before they got better: my perception of John (a pseudonym), and the relationship along with it, soured. The helmet's label for John was loud: <em>the accuser, the wronger of the innocent</em>. I broke through that noise and started a conversation as if the accusation had never happened, and John talked to me as if nothing had happened either. The barrier, social and mental, collapsed under its own weight, and the prejudice that the helmet had attached to John faded. The stream cleanses itself as long as it keeps flowing steadily.</p>
+    <p>What I found, eventually, is that the blocker was my own mind. I'm sure the event left a dent in both our brains (the amygdala tagging it as a threat, the hippocampus filing its context), but my own mental blocker was the one I could resolve. After the accusation, things got worse before they got better: my perception of John (a pseudonym), and the relationship along with it, soured. The helmet's label for John was loud: <em>the accuser, the wronger of the innocent</em>. I fought that noise with everything I had, against the biological straps holding me back, and started a conversation as if the accusation had never happened, and John talked to me as if nothing had happened either. The barrier, social and mental, collapsed under its own weight, and the prejudice that the helmet had attached to John faded. The stream cleanses itself as long as it keeps flowing steadily.</p>
 
     <p>Whether the barrier was purely mental, purely social or both, and whether it was only my perception or reality, doesn't matter. What mattered was the relief of not needing to suppress my sincerity because of an unpleasant event. That would be like putting out the fireplace because of a snowstorm: utterly absurd.</p>
 
@@ -535,26 +562,6 @@ date: 2026-10-12
         <p lang="zh-Hant">在止於至善。</p>
         <p class="tr">and in coming to rest in the highest good.</p>
       </div>
-      <div class="unit">
-        <p lang="zh-Hant">知止而後有定，</p>
-        <p class="tr">Know where to rest, and then you are steady;</p>
-      </div>
-      <div class="unit">
-        <p lang="zh-Hant">定而後能靜，</p>
-        <p class="tr">steady, and then calm;</p>
-      </div>
-      <div class="unit">
-        <p lang="zh-Hant">靜而後能安，</p>
-        <p class="tr">calm, and then at ease;</p>
-      </div>
-      <div class="unit">
-        <p lang="zh-Hant">安而後能慮，</p>
-        <p class="tr">at ease, and then able to deliberate;</p>
-      </div>
-      <div class="unit">
-        <p lang="zh-Hant">慮而後能得。</p>
-        <p class="tr">able to deliberate, and then able to attain.</p>
-      </div>
       <p class="cite">禮記·大學 (Great Learning)</p>
     </div>
 
@@ -608,19 +615,7 @@ date: 2026-10-12
 
     <p>This is the picture of the spring and the debris again. Extinguishing desires by hand is Shenxiu's wiping, and keeping the source running is the practice. If the practice is real, the desires lose their hold without being hunted one by one. The reverse also holds: a person who only fights desires has made the fight the aim, and the ledger is back, now tracking how well they are resisting.</p>
 
-    <hr>
-
-    <h2>A mirror</h2>
-
-    <p>Since acting on impulse and acting from clarity feel identical from inside, I need a way to check. I use the three aspects as a mirror, with one question for each:</p>
-
-    <ul>
-      <li><strong>Illuminating one's luminous virtue (明明德):</strong> Can I see my own motives, including the ugly ones, without defending them?</li>
-      <li><strong>Being close to the people (親民):</strong> Are the people around me actually better off? Not "do I feel generous," but is it true for them.</li>
-      <li><strong>Coming to rest in the highest good (止於至善):</strong> Does my aim hold when no one notices, or when nothing is repaid?</li>
-    </ul>
-
-    <p>The three cross-check each other. Clarity without benefit shows up in the second question, as a private insight that helps nobody. Benefit without clarity shows up in the first, as a helper who secretly needs thanks. Either can survive until the third question is tested by bad circumstances.</p>
+    <p>Since acting on impulse and acting from clarity feel identical from inside, I check outward, asking whether the people near me are actually better off and whether my aim holds when no one notices or nothing is repaid, and I would attach a few cautions even to that check.</p>
 
     <hr>
 
@@ -666,7 +661,7 @@ date: 2026-10-12
 
     <p><strong>It doesn't mean giving up understanding.</strong> Love tells me what to aim at, not how to hit it. Nobody cooks well on love and sincerity alone: technique has to be learnt, and so do listening, negotiating, and setting a boundary without cruelty. That learning is the serpent's shrewdness. The non-stop mental audit, the running verdict on my own motives and other people's, will keep running on its own, and I don't try to stop it. I just don't hand it the final say, and I keep my attention on the source of the spring. The audit is welcome as secondary data, but the final call rests on conscience, which some traditions call God. I check that call by asking where the nudge comes from: a boundary set to help someone grow is a different act from the same boundary set to punish them.</p>
 
-    <p><strong>The mirror is only as clear as the viewer.</strong> A dim mind reads its own reflection generously. That is why the second question points outside me, at what happens to the people near me.</p>
+    <p><strong>The check is only as clear as the viewer.</strong> A dim mind reads its own reflection generously. That is why I look at what happens to the people near me, not only at what I feel.</p>
 
     <p><strong>Aiming at non-transactionality can become a transaction.</strong> "I give freely so that I become a better person" is still a trade. The <em>Diamond Sutra</em> sees this coming:</p>
 
@@ -691,7 +686,7 @@ date: 2026-10-12
     <h2>The short version</h2>
 
     <blockquote>
-      Sincerity is a sense, not a mood. It is dull until trained, it is checked by whether the people near you are better off, and it starts with an aim you keep fixed no matter what happens.
+      Sincerity is a sense, not a mood. It is dull until trained, it is checked by whether the people near you are better off, and it starts with an aim you keep fixed no matter what happens. Training it takes two steps: set your aim on being a sage (立志做聖人), then hold it, whatever happens.
     </blockquote>
 
     <hr>
@@ -711,6 +706,690 @@ date: 2026-10-12
       <li><strong>The New Testament passages</strong> (John 20:29, Matthew 10:16, Matthew 22:37, Matthew 22:39–40; Luke 10:29 and Romans 13:10 are cited in prose) are from the SBL Greek New Testament (Michael W. Holmes, ed.), which is licensed CC BY 4.0. Proverbs 3:5 is from the Westminster Leningrad Codex.</li>
       <li><strong>"Tout comprendre, c'est tout pardonner"</strong> is a proverb of uncertain origin. It is often linked to Madame de Staël's <em>Corinne</em> (1807), which has a related line, and to Tolstoy's later use of the saying.</li>
       <li><strong>Aquinas</strong> is cited from <em>Summa Theologiae</em> I, q.12, a.8 ("Whether those who see God through His essence see all things in Him"), as printed in the Fribourg edition (bkv.unifr.ch).</li>
+    </ul>
+  </article>
+
+  <article lang="zh-Hant" id="article-zh">
+    <h1>非交易性的真誠</h1>
+    <p class="subtitle">為何它是一種需要訓練的感官——從一次不公的指控說起</p>
+    <p class="meta">2026年10月12日 &middot; {{ site.author }}</p>
+
+    <p>我曾在工作中被人指控，而那件事我並沒有做過。事後，我的腦子花了很多力氣在追問：</p>
+
+    <ul>
+      <li>我做錯了什麼，才會遭此對待？</li>
+      <li>是不是我把一次尋常的溝通失誤誤當成了指控？</li>
+      <li>還是我溝通得不好，自己招來的？</li>
+      <li>是公司文化的問題嗎？</li>
+      <li>是前世的業報嗎？</li>
+      <li>是上帝，或者諸神的考驗嗎？</li>
+      <li>也許對方有童年創傷，所以才會這樣對人？</li>
+    </ul>
+
+    <p>每個問題聽起來都合理，有些甚至很善意。但它們做的是同一件事：試圖結清一筆帳，算出誰欠了誰，我究竟是有罪、倒霉、受考驗，還是那個應當原諒的人。</p>
+
+    <p>後來我才明白，這些答案並不重要。值得問的是另一個問題：<strong>我對這個人，是否仍像從前一樣真誠？還是我在記一本帳，記著他做過的，或看起來做過的事？</strong></p>
+
+    <h2>沒有人能審完這筆帳</h2>
+
+    <p>法國有一句諺語：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="fr">Tout comprendre,</p>
+        <p class="tr">知曉一切，</p>
+      </div>
+      <div class="unit">
+        <p lang="fr">c'est tout pardonner.</p>
+        <p class="tr">便能饒恕一切。</p>
+      </div>
+      <p class="cite">法國諺語</p>
+    </div>
+
+    <p>麻煩出在「一切」二字。要知曉一切，我得知道對方的經歷與傷痕、職場的政治、牽涉其中每個人的弱點（包括我自己的），如果業報和星象存在，還得算上它們。沒有人擁有這些資訊。</p>
+
+    <p>就算退一步，設想最寬厚的情形：一切都是物理的，沒有任何東西被隱藏。1814年，<span class="name">Laplace</span> 設想過一個心智，它知道宇宙中每個粒子的位置與動量，因此能推算出宇宙的全部過去與未來（《機率的哲學論綱》）。即便是這樣的心智也不可企及。精確的位置需要無限的精度才能測得，而能量有限的宇宙付不起無限的精度。一個裝得下萬物狀態的心智，自身也得和宇宙一樣大，而它無法裝下它自己。「知道一切」，在談到信仰之前，就已被物理學排除。</p>
+
+    <figure>
+      <img src="hubble-ultra-deep-field.jpg" alt="一片漆黑的天空，散佈著數以千計形狀與顏色各異的星系">
+      <figcaption>哈勃超深空場：天空中約相當於手臂伸直時一粒沙子大小的一小塊，裡面幾乎每個光點都是一個星系。<span class="name">Laplace</span> 的心智需要掌握其中每一個粒子，以及畫面之外的一切。 <span class="credit">圖片：NASA/ESA，公有領域，來自<a href="https://commons.wikimedia.org/wiki/File:NASA-HS201427a-HubbleUltraDeepField2014-20140603.jpg">維基共享資源</a>。</span></figcaption>
+    </figure>
+
+    <p>神學從另一端抵達了同樣的界限。<span class="name">Thomas Aquinas</span> 論證，沒有任何受造的心智，即便它得見上帝，也不能知道上帝所做和所能做的一切（《神學大全》第一集第12題第8節）。</p>
+
+    <p>所以這筆帳審不完。而且，只理解一部分恰恰最危險，因為它往往只會支援我早已選定的判決。這會造成對處境的錯誤看法，而這種看法會在惡性迴圈中越陷越深，成為愈演愈烈的自我應驗預言。上面那些問題就是這種審計，善意的也不例外。</p>
+
+    <hr>
+
+    <h2>心安放的地方</h2>
+
+    <p>既然審不完，該怎麼辦？好幾個傳統用不同的話指向同一件事，我相信讀者心底本就知道：不要再倚靠自己的理解，把心放在帳目夠不著的地方。希伯來聖經是這樣說的：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="he" dir="rtl">בְּטַ֣ח אֶל־יְ֭הוָה</p>
+        <p class="tr">你要專心仰賴耶和華，</p>
+      </div>
+      <div class="unit">
+        <p lang="he" dir="rtl">בְּכָל־לִבֶּ֑ךָ</p>
+        <p class="tr">用盡你的心，</p>
+      </div>
+      <div class="unit">
+        <p lang="he" dir="rtl">וְאֶל־בִּֽ֝ינָתְךָ֗</p>
+        <p class="tr">不可倚靠</p>
+      </div>
+      <div class="unit">
+        <p lang="he" dir="rtl">אַל־תִּשָּׁעֵֽן׃</p>
+        <p class="tr">自己的聰明。</p>
+      </div>
+      <p class="cite">箴言 3:5，Westminster Leningrad Codex</p>
+    </div>
+
+    <p>在福音書裡，這顆心有了名字：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="grc">ὁ δὲ ἔφη αὐτῷ·</p>
+        <p class="tr"><span class="name">耶穌</span>對他說：</p>
+      </div>
+      <div class="unit">
+        <p lang="grc">Ἀγαπήσεις κύριον τὸν θεόν σου</p>
+        <p class="tr">「你要愛主你的神，</p>
+      </div>
+      <div class="unit">
+        <p lang="grc">ἐν ὅλῃ τῇ καρδίᾳ σου</p>
+        <p class="tr">盡心，</p>
+      </div>
+      <div class="unit">
+        <p lang="grc">καὶ ἐν ὅλῃ τῇ ψυχῇ σου</p>
+        <p class="tr">儘性，</p>
+      </div>
+      <div class="unit">
+        <p lang="grc">καὶ ἐν ὅλῃ τῇ διανοίᾳ σου·</p>
+        <p class="tr">盡意。」</p>
+      </div>
+      <p class="cite">馬太福音 22:37，SBL 希臘文新約（CC BY 4.0）</p>
+    </div>
+
+    <p>「把心放在神裡」，就是去愛；約翰一書甚至說神就是愛（約翰一書 4:8）。</p>
+
+    <p>我引這些經文，是當作有啟發的提示，而不是證明。它們指向的，是每個人都曾從內部經歷過的事，在嬰兒時期最為純粹，那時還沒有任何帳目：信任、回應、給予，不加計算。這無需經典來確認，所以其他任何視角都是可選的：</p>
+
+    <p>從物質的角度看，<br>一連串生化反應導致了那次指控。</p>
+
+    <p>從靈性的角度看，<br>它可能是<span class="name">撒旦</span>或上帝的考驗。</p>
+
+    <p>從佛法的角度看，<br>也許是我過去世的業報成熟了。</p>
+
+    <p>從心理學的角度看，<br>牽涉其中的人或許有過受虐的成長經歷。</p>
+
+    <p>這些都可能是真的，而沒有一個會改變對我的要求：<em>出於</em>愛與真誠去行動。</p>
+
+    <p>要運用這一點，我不需要先解決任何形而上學的問題。我把這裡的「神」理解為某個傳統對一個人最看重之物的稱呼，來自其他傳統、或沒有傳統的讀者，可以填上自己的詞。事實上，這篇文章的實踐意涵並不在乎你的神學立場（或沒有立場），這正是重點：你不必完全理解，就能以可自我驗證的方式完整地行動。這就像我們能看見東西，卻不必知道光如何運作、落在眼中何處、如何被轉換成生化與電訊號、最後又如何抵達視覺皮層。這種根本而實際的生活方式，涵蓋整個神學光譜，從無神論到泛神論。</p>
+
+    <hr>
+
+    <h2>三句老話裡的一條線</h2>
+
+    <p>有三句話，我記了好些年，卻一直沒看出它們的共同點。共同點就是：它們都不是交易。</p>
+
+    <p><strong>感受。</strong>《大學》說，誠意就是不自欺，並給出了一個比喻：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="zh-Hant">所謂誠其意者，</p>
+        <p class="tr">所謂讓自己的意念真誠，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">毋自欺也。</p>
+        <p class="tr">就是不要欺騙自己。</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">如惡惡臭，</p>
+        <p class="tr">就像厭惡難聞的臭味，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">如好好色。</p>
+        <p class="tr">就像喜愛美麗的顏色。</p>
+      </div>
+      <p class="cite">禮記·大學</p>
+    </div>
+
+    <p>你不會去權衡喜愛一種美麗的顏色有什麼好處。反應先於一切，也不需要理由。</p>
+
+    <figure>
+      <img src="peony.jpg" alt="一朵沾滿露珠的粉色牡丹">
+      <figcaption>美麗的顏色。沒有人會先權衡得失。 <span class="credit">攝影：<span class="name">Randi Hausken</span>，CC BY-SA 2.0，來自<a href="https://commons.wikimedia.org/wiki/File:Peony_(2580450418).jpg">維基共享資源</a>。</span></figcaption>
+    </figure>
+
+    <p><strong>給予。</strong>在《金剛經》裡，<span class="name">佛陀</span>告訴<span class="name">須菩提</span>菩薩應當如何布施。我把漢譯與梵文逐句並排：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="zh-Hant">復次，<span class="name">須菩提</span>，</p>
+        <p lang="sa">अपि तु खलु पुनः सुभूते</p>
+        <p class="tr">還有，<span class="name">須菩提</span>，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">菩薩於法，應無所住，行於布施。</p>
+        <p lang="sa">न बोधिसत्त्वेन वस्तुप्रतिष्ठितेन दानं दातव्यम्, न क्वचित्प्रतिष्ठितेन दानं दातव्यम्।</p>
+        <p class="tr">菩薩對於一切事物，都應當不執著於任何東西地去布施。</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">所謂不住色布施，</p>
+        <p lang="sa">न रूपप्रतिष्ठितेन दानं दातव्यम्।</p>
+        <p class="tr">也就是不執著於形色而布施，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">不住聲、香、味、觸、法布施。</p>
+        <p lang="sa">न शब्दगन्धरसस्प्रष्टव्यधर्मेषु प्रतिष्ठितेन दानं दातव्यम्।</p>
+        <p class="tr">不執著於聲音、氣味、味道、觸感和心中的念頭而布施。</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant"><span class="name">須菩提</span>，菩薩應如是布施，</p>
+        <p lang="sa">एवं हि सुभूते बोधिसत्त्वेन महासत्त्वेन दानं दातव्यं</p>
+        <p class="tr"><span class="name">須菩提</span>，菩薩應當這樣布施，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">不住於相。</p>
+        <p lang="sa">यथा न निमित्तसंज्ञायामपि प्रतितिष्ठेत्।</p>
+        <p class="tr">不執著於任何表象。</p>
+      </div>
+      <p class="cite">金剛般若波羅蜜經，<span class="name">鳩摩羅什</span>漢譯，並列梵文《金剛般若波羅蜜多》（<span class="name">P. L. Vaidya</span> 校本，1961）。「不住相布施」是通行的簡稱。</p>
+    </div>
+
+    <p>兩者很接近，但有一處差別，我覺得很有意味。漢譯以「相」（外相、表象）結尾，梵文則以 <em>nimitta-saṃjñā</em> 結尾，意思是對「相」的<em>觀念</em>。所以菩薩不可安住的，不只是施者、受者與所施之物這交換的三方，還包括「確有這些東西」的想法。不住，就是不記帳。</p>
+
+    <p><strong>信任。</strong>最後是 <span class="name">Thomas</span> 堅持要先看見才肯信之後，歸於<span class="name">耶穌</span>的那句話：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="grc">λέγει αὐτῷ ὁ Ἰησοῦς·</p>
+        <p class="tr"><span class="name">耶穌</span>對他說：</p>
+      </div>
+      <div class="unit">
+        <p lang="grc">Ὅτι ἑώρακάς με πεπίστευκας;</p>
+        <p class="tr">「你因看見了我才信嗎？</p>
+      </div>
+      <div class="unit">
+        <p lang="grc">μακάριοι οἱ μὴ ἰδόντες</p>
+        <p class="tr">沒有看見</p>
+      </div>
+      <div class="unit">
+        <p lang="grc">καὶ πιστεύσαντες.</p>
+        <p class="tr">就信的人有福了。」</p>
+      </div>
+      <p class="cite">約翰福音 20:29，SBL 希臘文新約（CC BY 4.0）。</p>
+    </div>
+
+    <p>等待證據，會把信任變成購買：先讓我看到貨，我再付錢。先信，則是把這段關係當作合同之外的東西。</p>
+
+    <p>給予與交易的區別，可以從<span class="name">孟子</span>對聖王<span class="name">舜</span>的描述中看出來：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="zh-Hant"><span class="name">舜</span>明於庶物，察於人倫；</p>
+        <p class="tr"><span class="name">舜</span>通曉萬物的道理，明察人倫關係；</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">由仁義行，</p>
+        <p class="tr">他是順著仁義而行事，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">非行仁義也。</p>
+        <p class="tr">而不是刻意去實行仁義。</p>
+      </div>
+      <p class="cite">孟子·離婁下（4B19）</p>
+    </div>
+
+    <p>「行仁義」是在算帳：看這個人從前做過什麼，這類人通常怎麼做，過去哪種回應有效，然後生產出合適的行為。它可以和愛看起來一模一樣，也可以是為了某種效果而表演，比如顯得慷慨、拉攏對方、或讓自己覺得是個好人。「由仁義行」則是行為從源頭流出，不論資料怎麼說。</p>
+
+    <p>我並不是說計算不重要。但最好的演算法是能當場適應的那個，而我認為只有真誠才做得到。它幾乎像是一種自然的衝動。這正是「如好好色」所指的，也是我為什麼總回到這個問題：不是「我的行為好嗎？」，而是「我是從哪裡出發的？」</p>
+
+    <p>所以我的主張是：感受、給予與信任是同一種能力，朝向三個方向。它是不期待以證據、回報或認可作為酬勞，也不因害怕神的懲罰或業報而行動的能力。而且它不是出廠設定。和味覺、聽覺一樣，不加訓練就是遲鈍的。</p>
+
+    <hr>
+
+    <h2>並非憑衝動行事</h2>
+
+    <p>「不憑理由行事」可以有兩種非常不同的意思。一個人可能因為從未審視過自己而不講理由；也可能因為把理由都過了一遍，走到了另一頭，而不再需要理由。從外面看，兩者一模一樣。</p>
+
+    <p>古人一再指出這種差別。<span class="name">孔子</span>說他十五歲立志於學，到七十歲才能隨心所欲而不逾矩（《論語》2.4）。</p>
+
+    <p>順著心走，是五十五年功夫的終點，而不是起點。《莊子》裡的屠夫談他的手藝，說的是同一件事：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="zh-Hant">始臣之解牛之時，</p>
+        <p class="tr">我剛開始宰牛的時候，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">所見无非牛者。</p>
+        <p class="tr">眼中看到的無非是一整頭牛。</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">三年之後，</p>
+        <p class="tr">三年以後，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">未嘗見全牛也。</p>
+        <p class="tr">就再也沒見過完整的牛了。</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">方今之時，</p>
+        <p class="tr">現在，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">臣以神遇而不以目視，</p>
+        <p class="tr">我用精神去接觸牛，而不用眼睛看，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">官知止而神欲行。</p>
+        <p class="tr">感官的作用停止了，精神卻隨意運行。</p>
+      </div>
+      <p class="cite">莊子·養生主</p>
+    </div>
+
+    <figure>
+      <img src="oxen.jpg" alt="一頭褐色的牛，長著淺色的長角，完整地站在牧場上">
+      <figcaption>屠夫第一年看到的：一整頭牛。 <span class="credit">攝影：美國國家公園管理局，公有領域，來自<a href="https://commons.wikimedia.org/wiki/File:Ox_in_the_pasture_at_Bent%27s_Old_Fort_National_Historic_Site_(0ea3851907144bf6b20ab5f502baca2a).JPG">維基共享資源</a>。</span></figcaption>
+    </figure>
+
+    <p>訓練出來的從容與衝動之間的分別，在於行動背後的自覺。</p>
+
+    <hr>
+
+    <h2>頭盔</h2>
+
+    <p>對我幫助最大的是這樣一幅畫面。想像戴上鋼鐵俠的頭盔，視野裡出現的每個人都被自動貼上標籤並框起來：<em>同事、威脅、友善、指控者</em>。標籤不是你寫的，頭盔自己運轉。被指控之後，頭盔給那個人換上了新標籤，我此後所做的一切都從它出發。</p>
+
+    <p>我認為這就是《金剛經》所說的「相」。住相，就是把標籤當成了那個人本身。</p>
+
+    <p>看見這一點是頓時的。前一刻你還在頭盔裡面，下一刻你發現原來有一頂頭盔。而改變頭盔是緩慢的。標籤來自多年養成的習慣，不會在你看見的那天消失。禪宗對這種組合有個舊名字，叫「頓悟漸修」，<span class="name">宗密</span>主張兩者並非對手：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="zh-Hant">頓漸非唯不相乖，</p>
+        <p class="tr">頓悟與漸修不但不互相違背，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">反而乃互相資也。</p>
+        <p class="tr">反而彼此相互成就。</p>
+      </div>
+      <p class="cite"><span class="name">宗密</span>，禪源諸詮集都序</p>
+    </div>
+
+    <p>就我的情形而言，頓悟的部分是放下那些問題。漸修的部分在其後。警報系統不斷亮起，對那些「事件」發出警告，要穩住航向，需要真正的心力。我表現得好像它從未發生，但這不是假裝警報沒響。我注意到了它，沒有聽從它，也沒有往帳上添一筆。努力的地方，就是訓練發生的地方。</p>
+
+    <p>你不必壓制這些生理警報，也不必與之對抗；力氣用在別處。把重心放在真誠與慈悲上，保持泉源清澈、穩定地湧流，而不是憂心、或親手清理散落在溪流沿途的雜物。</p>
+
+    <figure class="pair">
+      <div class="pair-grid">
+        <div>
+          <img src="spring-living.jpg" alt="森林中一池清澈的翠綠泉水">
+          <p class="label">流動的泉</p>
+          <p class="credit">佛羅里達州 Ichetucknee Springs。佛羅里達州政府，<span class="name">T. Scott</span> 攝，公有領域，來自<a href="https://commons.wikimedia.org/wiki/File:FlIchetuckneeSprings.jpg">維基共享資源</a>。</p>
+        </div>
+        <div>
+          <img src="spring-dry.jpg" alt="樹林中乾涸的溪床，佈滿石塊與落枝">
+          <p class="label">水已停流的河床</p>
+          <p class="credit">北威爾士 Loggerheads 附近。攝影：<span class="name">Rept0n1x</span>，CC BY-SA 3.0，來自<a href="https://commons.wikimedia.org/wiki/File:Dried-up_river_bed_near_Loggerheads_-_DSC06110.JPG">維基共享資源</a>。</p>
+        </div>
+      </div>
+      <figcaption>流動的水自會保持清澈。水停了的河床，落進什麼就留著什麼。</figcaption>
+    </figure>
+
+    <p>《壇經》中那場著名的對答，展現的是同一幅畫面。<span class="name">神秀</span>先寫：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="zh-Hant">身是菩提樹，</p>
+        <p class="tr">身體是菩提樹，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">心如明鏡臺。</p>
+        <p class="tr">心像明亮的鏡臺。</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">時時勤拂拭，</p>
+        <p class="tr">要時時勤奮地擦拭，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">勿使惹塵埃。</p>
+        <p class="tr">不要讓它沾上塵埃。</p>
+      </div>
+      <p class="cite"><span class="name">神秀</span>，壇經（敦煌本）</p>
+    </div>
+
+    <p><span class="name">慧能</span>回答：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="zh-Hant">菩提本無樹，</p>
+        <p class="tr">菩提原本就沒有樹，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">明鏡亦無臺。</p>
+        <p class="tr">明鏡也沒有臺。</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">佛性常清淨，</p>
+        <p class="tr">佛性本來就是清淨的，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">何處有塵埃。</p>
+        <p class="tr">哪裡會有塵埃呢？</p>
+      </div>
+      <p class="cite"><span class="name">慧能</span>，壇經（敦煌本）</p>
+    </div>
+
+    <p>溪流與明鏡是同一幅畫。散落在溪流沿途的雜物就是<span class="name">神秀</span>的灰塵，親手清理就是他的拂拭。<span class="name">慧能</span>的「佛性常清淨」就是那眼泉：源頭本已清澈，流動的水無處讓灰塵落腳。他不否認雜物會出現，他否認清理雜物是功夫所在，而把人指回源頭，源頭只需要繼續流動。</p>
+
+    <p>這首偈既是形而上學，也是實用的建議。<span class="name">慧能</span>是聽到《金剛經》的「應無所住而生其心」而開悟的，這正是上文「不住相布施」背後的那一句，而這一句是關於如何生活的指示，不只是對實相的陳述。</p>
+
+    <p>因為我做軟體，所以有一種說法對我來說講得通。標籤是一個我從未選擇過其權重的模型的輸出。若從唯物的角度看，這些權重不過是從生物學上的父母那裡繼承、又被過往經歷塑造的神經通路。我的目標，以真誠待人，也來自這些權重。它是多年學習、閱讀聖賢之言並深切思索所灌輸的，我不是生而知之。一旦灌輸進去，它就可以被固定為目標，讓其他權重圍繞它來調整。這篇文章意在成為同類的輸入，希望在你心裡點燃同樣的火花。把問題轉回自己身上，就像反向傳播：不責怪資料，而是把誤差沿著我自己的權重傳回去並加以調整。以交易的方式待人，就像最佳化一個代理指標，如感激或名聲，而不是它所代表的那樣東西。</p>
+
+    <p>我最終發現，障礙是我自己的心。我相信那件事在我們兩人的腦中都留下了凹痕（杏仁核把它標為威脅，海馬體歸檔它的情境），但我自己心裡的障礙，是我能夠化解的那一個。被指控之後，事情先變糟，才好轉：我對 <span class="name">John</span> （化名）的看法，連同這段關係，都變酸了。頭盔給 <span class="name">John</span> 貼的標籤很響亮：<em>指控者，冤枉無辜的人</em>。我用盡全力抵抗那片噪音，對抗那些把我往後拉的生理束縛，像指控從未發生過一樣開啟了一次交談，而 <span class="name">John</span> 也像什麼都沒發生過一樣與我說話。社交上與心理上的隔閡在自身的重量下坍塌，頭盔貼在 <span class="name">John</span> 身上的偏見也淡去了。只要持續穩定地流動，溪流自會淨化自己。</p>
+
+    <p>這道障礙究竟是純粹心理的、純粹社交的，還是兩者兼有，是隻存在於我的感知還是真實存在，都不重要。重要的是那種解脫：不必因為一件不愉快的事而壓抑自己的真誠。那就像因為一場暴風雪而把壁爐熄滅：荒謬之極。</p>
+
+    <p>這份解脫並不取決於 <span class="name">John</span> 的回應。就算 <span class="name">John</span> 一直冷淡，我依然會感受到它，因為它來自我知道自己沒有讓外在環境扼殺我的真誠，來自與自己相安。<span class="name">John</span> 的溫暖是受歡迎的額外之物，不是報酬。</p>
+
+    <p>與此同時，我的身體照常運作。交感—腎上腺髓質系統向血液注入腎上腺素，HPA 軸（下丘腦—垂體—腎上腺）隨後釋放皮質醇，我身體繃緊。然而在深處，不論那個地方是物理的、形而上的、兩者兼具還是別的什麼，那份解脫都能被感受到。</p>
+
+    <hr>
+
+    <h2>從哪裡開始</h2>
+
+    <p>這就剩下實際的問題。如果我還沒達到「如惡惡臭，如好好色」，該怎麼開始？有兩步。</p>
+
+    <p><strong>1. 要有目標。</strong>古人的說法是「立志」。<span class="name">程頤</span>稱它為根本，並說明了所需的條件：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="zh-Hant">所謂立志者，</p>
+        <p class="tr">所謂立志，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">至誠一心，</p>
+        <p class="tr">就是以最真誠的心專一於此，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">以道自任，</p>
+        <p class="tr">把「道」當作自己的責任，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">以聖人之訓為可必信。</p>
+        <p class="tr">並且堅信聖人的教誨一定可信。</p>
+      </div>
+      <p class="cite"><span class="name">程頤</span>，近思錄，卷八</p>
+    </div>
+
+    <p><span class="name">王陽明</span>在對學生的教誨開頭也講了同樣的要點：立志要做聖人，你就成為聖人。<span class="name">慧能</span>對<span class="name">五祖</span>說，他來此別無他求。</p>
+
+    <p>對初學者而言，這個目標正是《中庸》在最後一節勾勒的那個：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="zh-Hant">能盡其性，則能盡人之性；</p>
+        <p class="tr">能發揮自己的本性，就能幫助他人發揮本性；</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">能盡人之性，則能盡物之性；</p>
+        <p class="tr">能幫助他人發揮本性，就能幫助萬物發揮本性；</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">能盡物之性，則可以贊天地之化育。</p>
+        <p class="tr">能幫助萬物發揮本性，就可以輔助天地化育萬物。</p>
+      </div>
+      <p class="cite">禮記·中庸，第二十二章</p>
+    </div>
+
+    <p>之所以說這個目標是對初學者而言，是因為對聖人來說，自己、他人、萬物與天之間沒有界線，沒有什麼需要從外面去瞄準。</p>
+
+    <p>我請你憑信任接受這個目標，就像<span class="name">程頤</span>說「以聖人之訓為可必信」那樣。不要像哲學家那樣停在「到底該問什麼才是對的問題？」上。那又是無休止的審計，而聖賢早已走過這條路。</p>
+
+    <p><strong>2. 堅持到底，莫忘初衷。</strong>無論處境如何，都守住目標。<span class="name">孟子</span>給出了這種姿態：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="zh-Hant">夭壽不貳，</p>
+        <p class="tr">不論短命或長壽都不改變心志，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">修身以俟之，</p>
+        <p class="tr">修養自身來等待天命，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">所以立命也。</p>
+        <p class="tr">這就是安立自己命運的方法。</p>
+      </div>
+      <p class="cite">孟子·盡心上（7A1）。現代常寫作「夭壽不二」；貳指懷有二心。有些版本把夭寫作殀。</p>
+    </div>
+
+    <p>壽命是終極的回報，拒絕讓它改變你的路線，就是拒絕終極的交易。</p>
+
+    <p>但是，刻意選定的目標看起來就像我警告過的那種計算。一開始確實如此，感覺刻意而不自然，《中庸》給這個階段起了專門的名字：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="zh-Hant">誠者，天之道也；</p>
+        <p class="tr">真誠是上天的道理；</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">誠之者，人之道也。</p>
+        <p class="tr">努力做到真誠，是人的道理。</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">誠者，不勉而中，不思而得，從容中道，聖人也；</p>
+        <p class="tr">真誠的人，不用勉強就能做對，不用思考就能得到，從容自然地合於道，這就是聖人；</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">誠之者，擇善而固執之者也。</p>
+        <p class="tr">努力做到真誠的人，是選擇善並牢牢堅持的人。</p>
+      </div>
+      <p class="cite">禮記·中庸，第二十章</p>
+    </div>
+
+    <p>所以，目標、刻意的努力與笨拙，都屬於人之道。終點是不再帶有任何交易色彩的真誠。<span class="name">王陽明</span>在註解上面那句<span class="name">孟子</span>時，描述了這兩個階段：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="zh-Hant">「知天」，如「知州」、「知縣」之「知」，</p>
+        <p class="tr">「知天」的「知」，就像「知州」、「知縣」的「知」，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">是自己分上事，己與天為一。</p>
+        <p class="tr">是自己分內的事，自己與天合而為一。</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">……</p>
+        <p class="tr">……</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">至於夭壽不貳其心，</p>
+        <p class="tr">至於不論短命長壽都不動搖心志，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">乃是教學者一心為善，</p>
+        <p class="tr">是教導學習的人一心向善，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">不可以窮通夭壽之故，便把為善的心變動了，</p>
+        <p class="tr">不可因為困厄、順遂或壽命長短，就改變了向善的心，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">只去修身以俟命。</p>
+        <p class="tr">只管修養自身，等待天命。</p>
+      </div>
+      <p class="cite"><span class="name">王陽明</span>，傳習錄·上</p>
+    </div>
+
+    <p>陽明在最後幾句裡給出了學習者的任務：把心定在行善上，不讓困厄或順遂動搖它。這呼應了上文的「擇善而固執之」。官銜中的「知」字意為主管，所以「知天」就是把天的工作，即養育眼前的一切，當作自己的事。那是理想的境界：目標已融入本性，報酬的問題不再出現。</p>
+
+    <p>目標是什麼？《大學》開篇就說了：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="zh-Hant">大學之道，</p>
+        <p class="tr">大學的宗旨，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">在明明德，</p>
+        <p class="tr">在於彰顯光明的德性，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">在親民，</p>
+        <p class="tr">在於親近民眾，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">在止於至善。</p>
+        <p class="tr">在於安住於最高的善。</p>
+      </div>
+      <p class="cite">禮記·大學</p>
+    </div>
+
+    <p>這三句通常被稱為「三綱領」，但我覺得把它們讀作同一個目標的三個面向更好。<strong>「明明德」</strong>是內在的光，一顆清明到足以看見自身動機的心。<strong>「親民」</strong>是這光向外照耀，讓身邊的人真正過得更好。<strong>「止於至善」</strong>是無條件地安住於至善，而「夭壽不貳」守護的正是這一點。目標並不是先清明、後仁慈。</p>
+
+    <p>請注意，「親民」是從中心向外輻射的，從離你最近的人開始。我不認為這是需要去設計的。如果光是真的，輻射自會隨之而來。最近的人也是最難的考驗，因為帳本在那裡運轉得最活躍。</p>
+
+    <p>福音書用兩句話說出了同一個目標，是我所知最樸素的表述。當被問到哪條誡命最大時，<span class="name">耶穌</span>給出了前面引過的那條，要盡心、儘性、盡意愛神，然後加上第二條：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="grc">δευτέρα δὲ ὁμοία αὐτῇ·</p>
+        <p class="tr">「其次也相仿：</p>
+      </div>
+      <div class="unit">
+        <p lang="grc">Ἀγαπήσεις τὸν πλησίον σου ὡς σεαυτόν.</p>
+        <p class="tr">要愛鄰舍如同自己。</p>
+      </div>
+      <div class="unit">
+        <p lang="grc">ἐν ταύταις ταῖς δυσὶν ἐντολαῖς</p>
+        <p class="tr">這兩條誡命</p>
+      </div>
+      <div class="unit">
+        <p lang="grc">ὅλος ὁ νόμος κρέμαται καὶ οἱ προφῆται.</p>
+        <p class="tr">是律法和先知一切道理的總綱。」</p>
+      </div>
+      <p class="cite">馬太福音 22:39–40，SBL 希臘文新約（CC BY 4.0）</p>
+    </div>
+
+    <p>看看缺了什麼。沒有「如果」，也沒有「因為」。它沒有說如果鄰舍值得、如果他們回報你的愛、或為了你會得到獎賞才去愛他們，愛神也一樣。「如同自己」設定的是尺度，不是價碼。給出的唯一依據是說話的人。這和<span class="name">程頤</span>是同一個動作：目標是憑信任接受的，而不是從別的什麼推匯出來的。不把<span class="name">耶穌</span>視為權威的讀者，仍然能看出其中的形狀：一個不帶任何交易成分的目標。</p>
+
+    <p>這並不意味著其他誡命不重要。經文說的是整部律法和先知「懸掛」在這兩條上，像外套掛在釘子上，<span class="name">保羅</span>也得出同樣的結論：愛是不加害於鄰舍，所以愛就是滿全律法（羅馬書 13:10）。其餘的誡命不是要與前兩條並列逐一去做的第二張清單。守住這兩條，它們便隨之得到滿足。</p>
+
+    <p>帳本最喜歡的招數，是把目標縮窄到足以為我開脫。在路加福音的版本裡，發問的人想要為自己辯護，於是問：「誰是我的鄰舍呢？」（路加福音 10:29）這又是審計，這次用在「誰值得我愛」這個問題上。在我的故事裡，答案簡單得令人不安：<span class="name">John</span> 就是我身邊的那個人，而這條誡命沒有給指控過我的人留下例外。</p>
+
+    <p>這是我的解讀，不是在斷言這段話對最初聽眾的意義。無條件地愛神，對應「止於至善」；無條件地愛鄰舍，對應「親民」。兩條誡命，就像三個面向，是從不同側面看到的同一個目標。</p>
+
+    <p>同樣的結構，即先有功夫、其餘隨之而來，也幫助我理解了一句理學口號：「存天理，滅人慾」。我曾把它讀成兩種功夫，一種是培養善，一種是與惡作戰。現在我把它讀成一種功夫及其結果。「存天理」是功夫。滅掉自私的慾望，是功夫真實時隨之而來的結果。<span class="name">孟子</span>說出了其中的機制：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="zh-Hant">先立乎其大者，</p>
+        <p class="tr">先確立心中重大的根本，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">則其小者弗能奪也。</p>
+        <p class="tr">那麼次要的事物就奪不走它。</p>
+      </div>
+      <p class="cite">孟子·告子上（6A15）</p>
+    </div>
+
+    <p>這又是泉水與雜物的畫面。親手滅欲是<span class="name">神秀</span>的拂拭，讓源頭保持流動才是功夫。如果功夫是真的，慾望不必被一個個追殺，自然失去它的控制力。反過來也成立：只與慾望作戰的人，已把作戰當成了目標，帳本又回來了，只不過現在記的是自己抵抗得有多好。</p>
+
+    <p>由於「憑衝動行事」與「憑清明行事」從內部感覺一模一樣，我向外檢驗：身邊的人是否真的過得更好，當沒有人注意、或沒有任何回報時，我的目標是否還守得住；即便如此，這個檢驗也需要幾點提防。</p>
+
+    <hr>
+
+    <h2>要真誠，不要天真</h2>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="grc">γίνεσθε οὖν φρόνιμοι ὡς οἱ ὄφεις</p>
+        <p class="tr">所以你們要靈巧像蛇，</p>
+      </div>
+      <div class="unit">
+        <p lang="grc">καὶ ἀκέραιοι ὡς αἱ περιστεραί.</p>
+        <p class="tr">馴良像鴿子。</p>
+      </div>
+      <p class="cite">馬太福音 10:16，SBL 希臘文新約（CC BY 4.0）</p>
+    </div>
+
+    <p><strong>這只是一個個案。</strong>我講的是發生在我身上的事，以及我如何回應。我並不主張真誠總能化解衝突，也不主張它應當取代其他回應。</p>
+
+    <p><strong>這不意味著從不行動。</strong>沒有目標的行動是盲目的，而目標很簡單：我能做些什麼，把這個人再往他最大的自我實現推一步？同樣的問題適用於一切，不只是人，《中庸》從真誠出發，把這條鏈向外延伸：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="zh-Hant">唯天下至誠，為能盡其性；</p>
+        <p class="tr">只有天下最真誠的人，才能充分發揮自己的本性；</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">能盡其性，則能盡人之性；</p>
+        <p class="tr">能發揮自己的本性，就能幫助他人發揮本性；</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">能盡人之性，則能盡物之性；</p>
+        <p class="tr">能幫助他人發揮本性，就能幫助萬物發揮本性；</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">能盡物之性，則可以贊天地之化育。</p>
+        <p class="tr">能幫助萬物發揮本性，就可以輔助天地化育萬物。</p>
+      </div>
+      <p class="cite">禮記·中庸，第二十二章</p>
+    </div>
+
+    <p>在我的情形裡，答案是不需要再採取行動。在別的情形裡，設立界限、糾正或拒絕可能才是對的那一推，對行為不當的人也是如此。我改變的是帳本，而不是關於是否回應的規則。</p>
+
+    <p><strong>這不意味著放棄理解。</strong>愛告訴我瞄準什麼，卻沒告訴我怎麼命中。光靠愛與真誠，沒有人能做好飯：技巧必須學，傾聽、談判、不帶殘酷地設立界限也一樣。這種學習就是蛇的靈巧。那種不停歇的心理審計，對自己和他人動機的持續裁決，會自己繼續執行，我不試圖讓它停下。我只是不把最終決定權交給它，並把注意力放在泉源上。審計作為次要的資料是受歡迎的，但最後的決斷落在良知上，有些傳統稱之為神。我通過問這一推來自哪裡來檢驗這個決斷：為了幫助某人成長而設的界限，與為了懲罰他而設的同一道界限，是兩種不同的行為。</p>
+
+    <p><strong>檢驗只和檢驗的人一樣清晰。</strong>昏暗的心會寬容地解讀自己的倒影。所以我要看的是我身邊的人身上發生了什麼，而不只是我自己的感覺。</p>
+
+    <p><strong>以非交易為目標，也可能變成交易。</strong>「我無私地給予，是為了成為更好的人」，仍然是一樁買賣。《金剛經》預見了這一點：</p>
+
+    <div class="quote">
+      <div class="unit">
+        <p lang="zh-Hant">如是滅度無量無數無邊眾生，</p>
+        <p lang="sa">एवमपरिमाणानपि सत्त्वान् परिनिर्वाप्य</p>
+        <p class="tr">像這樣度化了無量無數無邊的眾生，</p>
+      </div>
+      <div class="unit">
+        <p lang="zh-Hant">實無眾生得滅度者。</p>
+        <p lang="sa">न कश्चित्सत्त्वः परिनिर्वापितो भवति।</p>
+        <p class="tr">實際上卻沒有任何眾生被度化。</p>
+      </div>
+      <p class="cite">金剛般若波羅蜜經，第三品，梵文取自 Vaidya 校本</p>
+    </div>
+
+    <p>就連「我在利益他人」，也可能變成一個相，一幅把自己當作施恩者的畫像。我不認為我已經解決了這個問題。我只是儘量在自己這樣做的時候注意到。</p>
+
+    <hr>
+
+    <h2>簡短版本</h2>
+
+    <blockquote>
+      真誠是與生俱來的，但是不加培養愛護，它始終如一個遲鈍的感官，無法感應，無法化己化人。培養它只需兩步：立志做聖人，然後堅持到底，莫忘初衷。
+    </blockquote>
+
+    <hr>
+
+    <h2>出處</h2>
+
+    <p>除原文外，譯文均為筆者自譯。關於這些文本的幾點說明：</p>
+
+    <ul class="sources">
+      <li><strong>《金剛經》</strong>原以梵文寫成，梵文寫本尚存。中國、韓國、日本與越南的修行者所用的，是<span class="name">鳩摩羅什</span>約在西元402年的漢譯。梵文取自 <span class="name">P. L. Vaidya</span> 校本（1961）。後來還有<span class="name">菩提流支</span>、<span class="name">真諦</span>、<span class="name">玄奘</span>與<span class="name">義淨</span>等人的漢譯。</li>
+      <li><strong><span class="name">程頤</span></strong>論立志的段落出自《近思錄》卷八，原是對君主治國的勸告。<strong><span class="name">王陽明</span></strong>論同一主題的話出自《教條示龍場諸生》。</li>
+      <li><strong>儒家文本</strong>（《大學》《中庸》《孟子》《論語》）以文言引用。各版本在個別字詞上有出入。</li>
+      <li><strong><span class="name">王陽明</span></strong>那段話出自《傳習錄》上卷，他在其中註解孟子 7A1。</li>
+      <li><strong>《莊子》</strong>的段落是「庖丁解牛」的故事。</li>
+      <li><strong>《壇經》</strong>的偈出自敦煌寫本。後來的版本把<span class="name">慧能</span>偈的三、四句寫作「本來無一物，何處惹塵埃」。</li>
+      <li><strong><span class="name">宗密</span></strong>的話出自《禪源諸詮集都序》，他在其中處理頓修與漸修之間表面的矛盾。「頓悟漸修」是他的立場的通行標籤。</li>
+      <li><strong>新約經文</strong>（約翰福音 20:29、馬太福音 10:16、馬太福音 22:37、馬太福音 22:39–40；路加福音 10:29 與羅馬書 13:10 在正文中引用）出自 SBL 希臘文新約（<span class="name">Michael W. Holmes</span> 編），採用 CC BY 4.0 授權。箴言 3:5 出自Westminster Leningrad Codex。</li>
+      <li><strong>「Tout comprendre, c'est tout pardonner」</strong>是一句來源不明的諺語，常被聯繫到 <span class="name">Madame de Staël</span> 的 <em>Corinne</em>（1807），其中有一句相近的話，也常聯繫到 <span class="name">Tolstoy</span> 後來對這句話的使用。</li>
+      <li><strong><span class="name">Aquinas</span></strong> 引自《神學大全》第一集第12題第8節（「那些透過本質看見神的人，是否在神內看見萬物」），依弗裡堡版本（bkv.unifr.ch）。</li>
     </ul>
   </article>
 </main>
